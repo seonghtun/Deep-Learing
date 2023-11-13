@@ -1,4 +1,5 @@
 import numpy as np
+import matplotlib.pyplot as plt 
 
 def AND(x1, x2):
     w1, w2, theta = 0.5, 0.5, 0.7
@@ -66,3 +67,38 @@ print(OR(0,0))
 print(OR(0,1))
 print(OR(1,0))
 print(OR(1,1))
+
+def XOR(x1, x2):
+    s1 = OR(x1, x2)
+    s2 = NAND(x1, x2)
+    tmp = AND(s1, s2)
+    if tmp <= 0:
+        return 0
+    else:
+        return 1
+
+print(XOR(0,0))
+print(XOR(0,1))
+print(XOR(1,0))
+print(XOR(1,1))
+
+def step_function(x):
+    if x > 0:
+        return 1
+    else:
+        return 0
+
+def step_function(x):
+    y = x > 0
+    return y.astype(np.int64)
+
+
+def step_function(x):
+    return np.array(x > 0, dtype = np.int64)
+
+x = np.arange(-5.0, 5.0, 0.1)
+y = step_function(x)
+
+plt.plot(x,y)
+plt.ylim(-0.1, 1.1)
+plt.show()
